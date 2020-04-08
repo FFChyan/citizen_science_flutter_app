@@ -60,9 +60,11 @@ flutter:
     - assets/images/right_angle.png
     - assets/images/wfwys.png
     - assets/images/zkydwyjs.jpeg
-#    - assets/images/pap.er/CIMk0FSOrAE.jpg
-#    - assets/images/pap.er/jb1Mc1lv8X0.jpg
-    - assets/images/pap.er/
+    - assets/images/pap.er/CIMk0FSOrAE.jpg
+    - assets/images/pap.er/jb1Mc1lv8X0.jpg
+    - assets/images/pap.er/xHhaFZb_ln0.jpg
+    - assets/images/pap.er/SrbXjbo-XbQ.jpg
+#    - assets/images/pap.er/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
