@@ -1,3 +1,4 @@
+import 'package:citizen_science/homepage/homepage.dart';
 import 'package:citizen_science/userSettings/user_settings_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:citizen_science/drawer/dependency/hidden_drawer/hidden_drawer_menu.dart';
@@ -5,17 +6,18 @@ import 'package:citizen_science/personalTasks/personal_tasks_page.dart';
 import 'package:citizen_science/browserProject/browse_page.dart';
 import 'package:flutter/painting.dart';
 
+
 class LeftDrawer extends StatelessWidget {
   final List<ScreenHiddenDrawer> itens = [
     ScreenHiddenDrawer(
         ItemHiddenMenu(
-          name: "我参与的项目",
-          colorLineSelected: Colors.lightGreenAccent,
+          name: "主页",
+          colorLineSelected: Color(0xFFFFFF66),
           baseStyle:
               TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
-          selectedStyle: TextStyle(color: Colors.lightGreenAccent),
+          selectedStyle: TextStyle(color: Color(0xFFFFFF66)),
         ),
-        PersonalTasksPage()),
+        HomePage()),
     ScreenHiddenDrawer(
         ItemHiddenMenu(
           name: "搜索新项目",
@@ -30,11 +32,22 @@ class LeftDrawer extends StatelessWidget {
         BrowsePage()),
     ScreenHiddenDrawer(
         ItemHiddenMenu(
-          name: "设置",
-          colorLineSelected: Colors.pinkAccent,
+          name: "我参与的项目",
+          colorLineSelected: Colors.lightGreenAccent,
           baseStyle:
               TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
-          selectedStyle: TextStyle(color: Colors.pinkAccent),
+          selectedStyle: TextStyle(color: Colors.lightGreenAccent),
+        ),
+        PersonalTasksPage()),
+    ScreenHiddenDrawer(
+        ItemHiddenMenu(
+          name: "设置",
+          colorLineSelected: Color(0xFF66CCFF),
+          baseStyle:
+              TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 25.0),
+          selectedStyle: TextStyle(
+            color: Color(0xFF66CCFF),
+          ),
           onTap: () {
             print("Click item");
           },

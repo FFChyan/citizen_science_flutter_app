@@ -67,7 +67,7 @@ class _BrowsePage extends State<BrowsePage>
           _searchFocusNode.unfocus();
         },
         child: Container(
-            color: ThemeColorBlackberryWine.lightGray[50],
+            color: ThemeColorBlackberryWine.lightGrey[50],
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext _context, bool innerBoxlsScrolled) {

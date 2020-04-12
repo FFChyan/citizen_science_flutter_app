@@ -28,7 +28,7 @@ class SearchWidget extends StatelessWidget {
     return Container(
       width: 200,
       decoration: BoxDecoration(
-        color: ThemeColorBlackberryWine.lightGray[100].withOpacity(0.6),
+        color: ThemeColorBlackberryWine.lightGrey[100].withOpacity(0.6),
         borderRadius: BorderRadius.circular(24.0),
       ),
       height: 32.0,
@@ -53,7 +53,7 @@ class SearchWidget extends StatelessWidget {
           ),
           contentPadding: EdgeInsets.zero,
           fillColor: _searchFocusNode.hasFocus
-              ? ThemeColorBlackberryWine.lightGray[100].withOpacity(0.6)
+              ? ThemeColorBlackberryWine.lightGrey[100].withOpacity(0.6)
               : Colors.transparent,
 //          focusColor: ThemeColorBlackberryWine.lightGray[100],
           focusedBorder: OutlineInputBorder(

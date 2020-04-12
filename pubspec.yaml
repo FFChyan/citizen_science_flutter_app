@@ -19,7 +19,11 @@ dependencies:
   ant_icons: ^1.0.0
   font_awesome_flutter: ^8.7.0
   flutter_beautiful_popup: ^1.5.0
-#  circular_bottom_navigation: ^1.0.1
+  fluttertoast: ^3.1.3
+  image_picker: 0.5.4+3
+  carousel_pro: ^1.0.0
+
+  #  circular_bottom_navigation: ^1.0.1
 
   #  flutter_inner_drawer: ^0.5.5
 #  folding_cell:
@@ -60,11 +64,26 @@ flutter:
     - assets/images/right_angle.png
     - assets/images/wfwys.png
     - assets/images/zkydwyjs.jpeg
+    - assets/images/ciyun3.png
+    - assets/images/ciyun4.png
+    - assets/images/membercard.png
+    - assets/images/assistcard.png
+    - assets/images/xinguan.png
     - assets/images/pap.er/CIMk0FSOrAE.jpg
     - assets/images/pap.er/jb1Mc1lv8X0.jpg
     - assets/images/pap.er/xHhaFZb_ln0.jpg
     - assets/images/pap.er/SrbXjbo-XbQ.jpg
-#    - assets/images/pap.er/
+    - assets/images/pap.er/W5XOhIfYs0.jpg
+    - assets/images/pap.er/URiPibO9QOw.jpg
+    - assets/images/pap.er/ImhNT6UAaGE.jpg
+    - assets/images/bugu.png
+    - assets/images/term.png
+    - assets/images/Webinars.png
+    - assets/images/conference.png
+    - assets/images/monthly.png
+
+
+  #    - assets/images/pap.er/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

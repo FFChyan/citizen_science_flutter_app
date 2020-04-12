@@ -2,6 +2,7 @@ import 'package:citizen_science/projectDetail/project_navigator.dart';
 import 'package:citizen_science/projectDetail/project_intro.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math' as math;
@@ -195,7 +196,7 @@ class SimpleFoldingCellState extends State<SimpleFoldingCell>
                                   "考拉宝宝拯救计划",
                                   style: CSTextStyle.titleTextStyle.copyWith(
                                       color: ThemeColorBlackberryWine
-                                          .lightGray[50]),
+                                          .lightGrey[50]),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -204,7 +205,7 @@ class SimpleFoldingCellState extends State<SimpleFoldingCell>
 //                                  "中科院动物研究所中科院动物研究所中科院动物研究所中科院动物研究所中科院动物研究所中科院动物研究所中科院动物研究所",
                                   style: CSTextStyle.subtitleTextStyle.copyWith(
                                       color: ThemeColorBlackberryWine
-                                          .lightGray[50]),
+                                          .lightGrey[50]),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -222,7 +223,7 @@ class SimpleFoldingCellState extends State<SimpleFoldingCell>
                                   onPressed: () {
                                     print("进入新的项目页");
                                     Navigator.of(context).push(
-                                      MaterialPageRoute(
+                                      CupertinoPageRoute(
                                         builder: (context) => ProjDetailNavigator(),
 //                                            ProjectIntroduction(
 //                                          navigationController:

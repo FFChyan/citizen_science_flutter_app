@@ -1,5 +1,6 @@
 import 'package:citizen_science/browserProject/browse_page.dart';
 import 'package:citizen_science/drawer/drawer_of_menu.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizen_science/login/components/forward_button.dart';
 import 'package:citizen_science/login/components/trapozoid_cut_colored_image.dart';
@@ -121,7 +122,7 @@ class _WelcomePage extends State<WelcomePage> {
                     onPressed: () {
 //                      widget.goToLoginListener.onGoAheadTap();
                       Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) {
+                        CupertinoPageRoute(builder: (context) {
                           return LeftDrawer();
                         }),
                       );

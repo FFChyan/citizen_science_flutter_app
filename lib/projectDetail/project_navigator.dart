@@ -2,6 +2,8 @@ import 'package:citizen_science/projectDetail/project_intro.dart';
 import 'package:citizen_science/projectDetail/sponsor_intro.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
+import 'package:citizen_science/uploadData/myData.dart';
+import 'package:citizen_science/uploadData/myDataPage/dataCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizen_science/projectDetail/circular_bottom_navigation.dart';
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: ProjDetailNavigator(),
+      home: ProjDetailNavigator(),
     );
   }
 }
@@ -29,7 +31,7 @@ class _ProjDetailNavigator extends State<ProjDetailNavigator> {
       new CircularBottomNavigationController(0);
 
   @override
-  void initState(){
+  void initState() {
     selectedPage = 0;
   }
 
@@ -53,7 +55,10 @@ class _ProjDetailNavigator extends State<ProjDetailNavigator> {
     new TabItem(Icons.layers, "公开数据", ThemeColorBlackberryWine.darkBlue[50],
         labelStyle: CSTextStyle.subtitleTextStyle
             .copyWith(color: ThemeColorBlackberryWine.darkBlue[50])),
-//    new TabItem(Icons.notifications, "Notifications", Colors.cyan),
+    new TabItem(
+        Icons.add_to_photos, "立即上传", ThemeColorBlackberryWine.orange[900],
+        labelStyle: CSTextStyle.subtitleTextStyle
+            .copyWith(color: ThemeColorBlackberryWine.orange[900])),
   ]);
 
   Widget _buildPage(int whichPage, BuildContext context) {
@@ -66,6 +71,10 @@ class _ProjDetailNavigator extends State<ProjDetailNavigator> {
       case 2:
         return Container(
           color: ThemeColorBlackberryWine.darkBlue[50],
+        );
+      case 3:
+        return MyData(
+          context2: context,
         );
     }
   }
@@ -88,7 +97,6 @@ class _ProjDetailNavigator extends State<ProjDetailNavigator> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
       home: Scaffold(
         body: _buildPage(selectedPage, context),
         bottomNavigationBar: CircularBottomNavigation(

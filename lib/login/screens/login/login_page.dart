@@ -1,6 +1,7 @@
 import 'package:citizen_science/drawer/drawer_of_menu.dart';
 import 'package:citizen_science/login/utility/animated_button.dart';
 import 'package:citizen_science/login/utility/expandable_container.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:citizen_science/login/components/header_text.dart';
 import 'package:citizen_science/login/components/trapozoid_cut_colored_image.dart';
@@ -217,7 +218,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
             color: ThemeColorBlackberryWine.darkPurpleBlue[200],
           ),
           contentPadding: EdgeInsets.zero,
-          fillColor: ThemeColorBlackberryWine.lightGray[50],
+          fillColor: ThemeColorBlackberryWine.lightGrey[50],
           labelStyle: textTheme.subhead.copyWith(color: Colors.grey),
           labelText: "用户名",
           focusedBorder: OutlineInputBorder(
@@ -288,7 +289,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
                   : CrossFadeState.showSecond,
             ),
           ),
-          fillColor: ThemeColorBlackberryWine.lightGray[50],
+          fillColor: ThemeColorBlackberryWine.lightGrey[50],
           labelStyle: textTheme.subhead.copyWith(color: Colors.grey),
           labelText: "密码",
           focusedBorder: OutlineInputBorder(
@@ -360,7 +361,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
                   : CrossFadeState.showSecond,
             ),
           ),
-          fillColor: ThemeColorBlackberryWine.lightGray[50],
+          fillColor: ThemeColorBlackberryWine.lightGrey[50],
           labelStyle: textTheme.subhead.copyWith(color: Colors.grey),
           labelText: "确认密码",
           focusedBorder: OutlineInputBorder(
@@ -449,7 +450,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
                 _submitController.reverse();
               }).then(
                 (value) => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) {
+                  CupertinoPageRoute(builder: (context) {
                     return LeftDrawer();
                   }),
                 ),

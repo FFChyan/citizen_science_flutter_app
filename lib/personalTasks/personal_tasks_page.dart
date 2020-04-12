@@ -6,6 +6,7 @@ import 'package:citizen_science/personalTasks/task_row.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
 import 'package:citizen_science/userSettings/user_settings_main_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
@@ -138,7 +139,7 @@ class _PersonalTasksPageState extends State<PersonalTasksPage> {
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) {
+                CupertinoPageRoute(builder: (context) {
                   return UserSettings();
                 }),
               );
@@ -220,7 +221,7 @@ class _PersonalTasksPageState extends State<PersonalTasksPage> {
               ),
               new Text(
                 '参',
-                style: CSTextStyle.largeTitleTextStyle
+                style: CSTextStyle.hugeTitleTextStyle
                     .copyWith(color: ThemeColorBlackberryWine.darkBlue[800]),
               ),
               new Text(

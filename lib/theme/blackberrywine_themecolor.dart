@@ -42,7 +42,7 @@ class ThemeColorBlackberryWine{
       },
   );
 
-  static const MaterialColor lightGray = const MaterialColor(
+  static const MaterialColor lightGrey = const MaterialColor(
       _lightGray,
       const <int, Color>{
         50: const Color(0xFFf0f0f0),

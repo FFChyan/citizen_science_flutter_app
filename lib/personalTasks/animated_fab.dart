@@ -1,6 +1,10 @@
 import 'dart:math' as math;
 
+import 'package:citizen_science/commentPage/commentPage.dart';
+import 'package:citizen_science/message/myMessage.dart';
+import 'package:citizen_science/message/myMessagePage/messagePage.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedFab extends StatefulWidget {
@@ -49,10 +53,10 @@ class _AnimatedFabState extends State<AnimatedFab>
             alignment: Alignment.center,
             children: <Widget>[
               _buildExpandedBackground(),
-              _buildOption(Icons.assignment, 0.0),
-              _buildOption(Icons.mail_outline, -math.pi / 3),
-              _buildOption(Icons.access_alarm, -2 * math.pi / 3),
-              _buildOption(Icons.offline_pin, math.pi),
+              _buildOption(0, Icons.assignment, 0.0),
+              _buildOption(1, Icons.mail_outline, -math.pi / 3),
+              _buildOption(2, Icons.access_alarm, -2 * math.pi / 3),
+              _buildOption(3, Icons.offline_pin, math.pi),
               _buildFabCore(),
             ],
           );
@@ -61,7 +65,29 @@ class _AnimatedFabState extends State<AnimatedFab>
     );
   }
 
-  Widget _buildOption(IconData icon, double angle) {
+  void _navigator(int iconIndex) {
+    switch (iconIndex) {
+      case 0:
+        Navigator.of(context).push(
+          CupertinoPageRoute(builder: (context) {
+            return MessagePage(bartitle: "数据反馈");
+          }),
+        );
+        break;
+      case 1:
+        Navigator.of(context).push(
+          CupertinoPageRoute(builder: (context) {
+            return MessagePage(bartitle: "任务通知");
+          }),
+        );
+        break;
+      case 3:
+        widget.onClick();
+        break;
+    }
+  }
+
+  Widget _buildOption(int iconIndex, IconData icon, double angle) {
     if (_animationController.isDismissed) {
       return Container();
     }
@@ -69,6 +95,7 @@ class _AnimatedFabState extends State<AnimatedFab>
     if (_animationController.value > 0.8) {
       iconSize = 26.0 * (_animationController.value - 0.8) * 5;
     }
+//    print(angle.floor().toString() + icon.toString());
     return new Transform.rotate(
       angle: angle,
       child: new Align(
@@ -76,7 +103,9 @@ class _AnimatedFabState extends State<AnimatedFab>
         child: new Padding(
           padding: new EdgeInsets.only(top: 8.0),
           child: new IconButton(
-            onPressed: _onIconClick,
+            onPressed: () {
+              _navigator(iconIndex);
+            },
             icon: new Transform.rotate(
               angle: -angle,
               child: new Icon(
