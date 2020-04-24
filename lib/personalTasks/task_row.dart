@@ -1,4 +1,4 @@
-import 'package:citizen_science/personalTasks/task.dart';
+import 'package:citizen_science/utils/task.dart';
 import 'package:citizen_science/projectDetail/project_navigator.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:flutter/cupertino.dart';

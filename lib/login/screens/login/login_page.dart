@@ -10,7 +10,6 @@ import 'package:citizen_science/login/utility/app_constant.dart';
 import 'package:citizen_science/login/utility/color_utility.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 abstract class GoToWelcomeListener {
   void onGoToWelcomeTap();
@@ -31,9 +30,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
-  final userNameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+  final userNameController = new TextEditingController();
+  final passwordController = new TextEditingController();
+  final confirmPasswordController = new TextEditingController();
+  final _userNameFocusNode = new FocusNode();
+  final _passwordFocusNode = new FocusNode();
+
   final formKey = GlobalKey<FormState>();
   var _obscureText = true;
 
@@ -46,8 +48,17 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
   AnimationController _loadingController;
   Animation<double> _buttonScaleAnimation;
   AnimationController _submitController;
+  AnimationController _cardController;
+
   var _isLoading = false;
   var _isSubmitting = false;
+  var _islogin = true;
+  var _isEmail = true;
+
+  var _authened = false;
+
+  String _userName = '';
+  String _userPwd = '';
 
   bool get buttonEnabled => !_isLoading && !_isSubmitting;
 
@@ -95,6 +106,19 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(milliseconds: 1000),
     );
+
+    _cardController =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+
+    Animation<EdgeInsets> movement = Tween<EdgeInsets>(
+      begin: EdgeInsets.only(top: 0.0),
+      end: EdgeInsets.only(top: 300.0),
+    ).animate(_cardController)
+      ..addListener(() {
+        setState(() {
+          // the state that has changed here is the animation object’s value
+        });
+      });
   }
 
   @override
@@ -107,8 +131,6 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final TextTheme textTheme = Theme.of(context).textTheme;
-
-//    print("signupMode=" + widget.signUpMode.toString());
 
     return SingleChildScrollView(
       child: Stack(
@@ -142,60 +164,133 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
   Widget _buildForm(Size size, TextTheme textTheme) {
     return Padding(
       padding: EdgeInsets.only(top: size.height * 0.3, left: 40, right: 40),
-      child: SingleChildScrollView(
-        child: Material(
-          borderRadius: BorderRadius.circular(20.0),
-          elevation: 8.0,
+      child: AnimatedSwitcher(
+        duration: Duration(milliseconds: 200),
+//        transitionBuilder: (Widget child, Animation<double> animation) {
+//          var tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
+//          return SlideTransitionX(
+//            child: child,
+//            direction: AxisDirection.right,
+//            position: animation,
+//          );
+//        },
+        transitionBuilder: (child, anim) {
+          return ScaleTransition(child: child, scale: anim);
+        },
+        child: _islogin
+            ? SingleChildScrollView(
+                child: Material(
+                  borderRadius: BorderRadius.circular(20.0),
+                  elevation: 8.0,
 //                key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 18,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.01),
-                child: _buildTextFormUsername(textTheme),
-              ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.05,
+                              vertical: size.height * 0.01),
+                          child: _buildTextFormUsername(textTheme),
+                        ),
+//                      SizedBox(height: 20,),
 //              Padding(
 //                padding: EdgeInsets.symmetric(
 //                    horizontal: size.width * 0.1, vertical: 5),
 //              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05,
-                  vertical: size.height * 0.01,
-                ),
-                child: _buildTextFormPassword(textTheme),
-              ),
-              ExpandableContainer(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.01,
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.01,
+                          ),
+                          child: _buildTextFormPassword(textTheme),
+                        ),
+//                      SizedBox(height: 20,),
+
+                        ExpandableContainer(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: size.width * 0.05,
+                              vertical: size.height * 0.01,
+                            ),
+                            child: _buildTextFormConfirmPassword(textTheme),
+                          ),
+                          controller: _switchAuthController,
+                          onExpandCompleted: () =>
+                              _postSwitchAuthController.forward(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(0),
+                          child: _buildForgotPasswordBtn(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: _buildSubmitBtn(),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: _buildTextFormConfirmPassword(textTheme),
                 ),
-                controller: _switchAuthController,
-                onExpandCompleted: () => _postSwitchAuthController.forward(),
+              )
+            : SingleChildScrollView(
+                child: Material(
+                  borderRadius: BorderRadius.circular(20.0),
+                  elevation: 8.0,
+//                key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 18,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.01),
+                        child: Text(
+                          "我们将发一封邮件到你的邮箱\n请注意查收",
+                          style: CSTextStyle.subtitleTextStyle
+                              .copyWith(color: Colors.black54),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.05,
+                            vertical: size.height * 0.01),
+                        child: _buildTextFormUsername(textTheme),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+                        child: _buildSendMailBtn(),
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "返回",
+                          style: CSTextStyle.subtitleTextStyle.copyWith(
+                              color:
+                                  ThemeColorBlackberryWine.darkPurpleBlue[500],
+                              fontWeight: FontWeight.w500),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _islogin = !_islogin;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-//              SizedBox(
-//                height: 5,
-//              ),
-              Padding(
-                padding: EdgeInsets.all(0),
-                child: _buildForgotPasswordBtn(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(15),
-                child: _buildSubmitBtn(),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -218,9 +313,10 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
             color: ThemeColorBlackberryWine.darkPurpleBlue[200],
           ),
           contentPadding: EdgeInsets.zero,
+//          contentPadding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
           fillColor: ThemeColorBlackberryWine.lightGrey[50],
           labelStyle: textTheme.subhead.copyWith(color: Colors.grey),
-          labelText: "用户名",
+          labelText: "邮箱或手机号",
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: ThemeColorBlackberryWine.darkPurpleBlue, width: 1.5),
@@ -230,12 +326,46 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
             borderSide: BorderSide(color: Colors.transparent, width: 1.5),
             borderRadius: BorderRadius.all(Radius.circular(50)),
           ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent, width: 1.5),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: ThemeColorBlackberryWine.darkPurpleBlue, width: 1.5),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
         ),
         keyboardType: TextInputType.text,
         controller: userNameController,
-        validator: (val) => val.length == 0
-            ? PHONE_AUTH_VALIDATION_EMPTY
-            : val.length < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
+        focusNode: _userNameFocusNode,
+        onFieldSubmitted: (value) {
+          FocusScope.of(context).requestFocus(_passwordFocusNode);
+        },
+        enabled: true,
+        validator: (val) {
+          if (val.contains("@") && val.contains(".com") && val.length >= 7) {
+            return null;
+          } else if (val.length > 10 &&
+              val
+                      .replaceAll('0', '')
+                      .replaceAll('1', '')
+                      .replaceAll('2', '')
+                      .replaceAll('3', '')
+                      .replaceAll('4', '')
+                      .replaceAll('5', '')
+                      .replaceAll('6', '')
+                      .replaceAll('7', '')
+                      .replaceAll('8', '')
+                      .replaceAll('9', '') ==
+                  '') {
+            return null;
+          } else
+            return "邮箱或手机号格式不正确";
+        },
+        onSaved: (val) {
+          _userName = val;
+        },
       ),
     );
   }
@@ -256,7 +386,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
           contentPadding: EdgeInsets.zero,
           prefixIcon: Icon(
             Icons.lock,
-            color: ThemeColorBlackberryWine.darkPurpleBlue[200],
+            color: ThemeColorBlackberryWine.darkPurpleBlue[200]
           ),
           suffixIcon: GestureDetector(
             onTap: () => setState(() => _obscureText = !_obscureText),
@@ -292,6 +422,7 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
           fillColor: ThemeColorBlackberryWine.lightGrey[50],
           labelStyle: textTheme.subhead.copyWith(color: Colors.grey),
           labelText: "密码",
+          enabled: false,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: ThemeColorBlackberryWine.darkPurpleBlue, width: 1.5),
@@ -301,13 +432,31 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
             borderSide: BorderSide(color: Colors.transparent, width: 1.5),
             borderRadius: BorderRadius.all(Radius.circular(50)),
           ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent, width: 1.5),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: ThemeColorBlackberryWine.darkPurpleBlue, width: 1.5),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+          ),
         ),
         keyboardType: TextInputType.text,
         controller: passwordController,
         obscureText: _obscureText,
-        validator: (val) => val.length == 0
-            ? PHONE_AUTH_VALIDATION_EMPTY
-            : val.length < 10 ? PHONE_AUTH_VALIDATION_INVALID : null,
+        focusNode: _passwordFocusNode,
+        validator: (val) {
+          if (val.length < 6) {
+            print("密码长度不小于6位");
+            return "密码长度不小于6位";
+          } else {
+            return null;
+          }
+        },
+        onSaved: (val) {
+          _userPwd = val;
+        },
       ),
     );
   }
@@ -401,7 +550,12 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
                     color: ThemeColorBlackberryWine.darkPurpleBlue[500],
                     fontWeight: FontWeight.w500),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _islogin = !_islogin;
+                });
+                formKey.currentState.save();
+              },
             ),
           ),
           FlatButton(
@@ -443,18 +597,56 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
             controller: _submitController,
             text: authModeIsSignUp ? "立即注册" : "登录",
             onPressed: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              if (!formKey.currentState.validate()) {
+                return false;
+              }
+              formKey.currentState.save();
+              if (_authened) {
+                _submitController.forward();
+                setState(() => _isSubmitting = true);
+                Future.delayed(const Duration(milliseconds: 2700), () {
+//                          setState(() => _showShadow = false);
+                  _submitController.reverse();
+                }).then(
+                  (value) => Navigator.of(context).pushReplacement(
+                    CupertinoPageRoute(builder: (context) {
+                      return LeftDrawer(status: "zl");
+                    }),
+                  ),
+                );
+              }
+              return true;
+            }),
+      ),
+    );
+  }
+
+  Widget _buildSendMailBtn() {
+    return FadeTransition(
+      opacity: widget.enterAnimation.submitBtnOpacity,
+      child: ScaleTransition(
+        scale: _buttonScaleAnimation,
+        child: AnimatedButton(
+            color: ThemeColorBlackberryWine.darkPurpleBlue,
+            loadingColor: ThemeColorBlackberryWine.redWine,
+            controller: _submitController,
+            text: _isEmail ? "发送邮件" : "发送验证码",
+            onPressed: () {
               _submitController.forward();
               setState(() => _isSubmitting = true);
               Future.delayed(const Duration(milliseconds: 2700), () {
 //                          setState(() => _showShadow = false);
                 _submitController.reverse();
-              }).then(
-                (value) => Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                    return LeftDrawer();
-                  }),
-                ),
-              );
+              });
+
+//                  .then(
+//                    (value) => Navigator.of(context).pushReplacement(
+//                  CupertinoPageRoute(builder: (context) {
+//                    return LeftDrawer();
+//                  }),
+//                ),
+//              );
             }),
       ),
     );
@@ -557,6 +749,70 @@ class _LoginPage extends State<LoginPage> with TickerProviderStateMixin {
           imagePath: IMAGE_SLIPPER_PATH,
         ),
       ),
+    );
+  }
+}
+
+class SlideTransitionX extends AnimatedWidget {
+  SlideTransitionX({
+    Key key,
+    @required Animation<double> position,
+    this.transformHitTests = true,
+    this.direction = AxisDirection.down,
+    this.child,
+  })  : assert(position != null),
+        super(key: key, listenable: position) {
+    // 偏移在内部处理
+    switch (direction) {
+      case AxisDirection.up:
+        _tween = Tween(begin: Offset(0, 1), end: Offset(0, 0));
+        break;
+      case AxisDirection.right:
+        _tween = Tween(begin: Offset(-1, 0), end: Offset(0, 0));
+        break;
+      case AxisDirection.down:
+        _tween = Tween(begin: Offset(0, -1), end: Offset(0, 0));
+        break;
+      case AxisDirection.left:
+        _tween = Tween(begin: Offset(1, 0), end: Offset(0, 0));
+        break;
+    }
+  }
+
+  Animation<double> get position => listenable;
+
+  final bool transformHitTests;
+
+  final Widget child;
+
+  //退场（出）方向
+  final AxisDirection direction;
+
+  Tween<Offset> _tween;
+
+  @override
+  Widget build(BuildContext context) {
+    Offset offset = _tween.evaluate(position);
+    if (position.status == AnimationStatus.reverse) {
+      switch (direction) {
+        case AxisDirection.up:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+        case AxisDirection.right:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+        case AxisDirection.down:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+        case AxisDirection.left:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+      }
+    }
+    return FractionalTranslation(
+      translation: offset,
+      transformHitTests: transformHitTests,
+      child: child,
     );
   }
 }

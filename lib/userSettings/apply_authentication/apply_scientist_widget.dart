@@ -249,58 +249,58 @@ class _ApplyScientist extends State<ApplyScientist>
               SizedBox(
                 height: 20,
               ),
-              TextFormField(
-                controller: _nameController,
-                focusNode: _nameFocusNode,
-                style: CSTextStyle.titleTextStyle.copyWith(
-                    letterSpacing: 3,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w400),
+//              TextFormField(
+//                controller: _nameController,
+//                focusNode: _nameFocusNode,
+//                style: CSTextStyle.titleTextStyle.copyWith(
+//                    letterSpacing: 3,
+//                    color: Colors.black54,
+//                    fontWeight: FontWeight.w400),
+////                textAlignVertical: TextAlignVertical.bottom,
+//                decoration: InputDecoration(
+//                  contentPadding: EdgeInsets.only(top: 20, bottom: 5),
+//                  labelText: "姓名",
+//                  labelStyle: CSTextStyle.normal,
+////                  hintText: "姓名"
+//                ),
+//              ),
+//              TextFormField(
 //                textAlignVertical: TextAlignVertical.bottom,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 20, bottom: 5),
-                  labelText: "姓名",
-                  labelStyle: CSTextStyle.normal,
-//                  hintText: "姓名"
-                ),
-              ),
-              TextFormField(
-                textAlignVertical: TextAlignVertical.bottom,
-                cursorWidth: 1.5,
-//                maxLength: 50,
-                cursorColor: Colors.black54,
-                controller: _institutionNameController,
-                focusNode: _institutionNameFocusNode,
-                style: CSTextStyle.titleTextStyle.copyWith(
-                    letterSpacing: 3,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w400),
+//                cursorWidth: 1.5,
+////                maxLength: 50,
+//                cursorColor: Colors.black54,
+//                controller: _institutionNameController,
+//                focusNode: _institutionNameFocusNode,
+//                style: CSTextStyle.titleTextStyle.copyWith(
+//                    letterSpacing: 3,
+//                    color: Colors.black54,
+//                    fontWeight: FontWeight.w400),
+////                textAlignVertical: TextAlignVertical.bottom,
+//                decoration: InputDecoration(
+//                  contentPadding: EdgeInsets.only(top: 30, bottom: 5),
+//                  labelText: "所属单位或机构",
+//                  labelStyle: CSTextStyle.normal,
+////                  hintText: "姓名"
+//                ),
+//              ),
+//              TextFormField(
 //                textAlignVertical: TextAlignVertical.bottom,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 30, bottom: 5),
-                  labelText: "所属单位或机构",
-                  labelStyle: CSTextStyle.normal,
-//                  hintText: "姓名"
-                ),
-              ),
-              TextFormField(
-                textAlignVertical: TextAlignVertical.bottom,
-                cursorWidth: 1.5,
-                cursorColor: Colors.black54,
-                controller: _positionController,
-                focusNode: _positionFocusNode,
-                style: CSTextStyle.titleTextStyle.copyWith(
-                    letterSpacing: 3,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.w400),
-//                textAlignVertical: TextAlignVertical.bottom,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 30, bottom: 5),
-                  labelText: "职称（职位）",
-                  labelStyle: CSTextStyle.normal,
-//                  hintText: "姓名"
-                ),
-              ),
+//                cursorWidth: 1.5,
+//                cursorColor: Colors.black54,
+//                controller: _positionController,
+//                focusNode: _positionFocusNode,
+//                style: CSTextStyle.titleTextStyle.copyWith(
+//                    letterSpacing: 3,
+//                    color: Colors.black54,
+//                    fontWeight: FontWeight.w400),
+////                textAlignVertical: TextAlignVertical.bottom,
+//                decoration: InputDecoration(
+//                  contentPadding: EdgeInsets.only(top: 30, bottom: 5),
+//                  labelText: "职称（职位）",
+//                  labelStyle: CSTextStyle.normal,
+////                  hintText: "姓名"
+//                ),
+//              ),
               SizedBox(
                 height: 50,
               ),
@@ -332,7 +332,7 @@ class _ApplyScientist extends State<ApplyScientist>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "上传简历（可选）",
+                    "上传简历",
                     style: CSTextStyle.subtitleTextStyle,
                   ),
                   IconButton(

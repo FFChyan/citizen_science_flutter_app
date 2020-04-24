@@ -123,7 +123,7 @@ class _WelcomePage extends State<WelcomePage> {
 //                      widget.goToLoginListener.onGoAheadTap();
                       Navigator.of(context).pushReplacement(
                         CupertinoPageRoute(builder: (context) {
-                          return LeftDrawer();
+                          return LeftDrawer(status: "zl",);
                         }),
                       );
                     },

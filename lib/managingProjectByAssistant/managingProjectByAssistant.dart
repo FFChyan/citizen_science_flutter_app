@@ -21,19 +21,19 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new PostedProjectByScientists(),
+      home: new ManagingProjectByAssistant(),
     );
   }
 }
 
-class PostedProjectByScientists extends StatefulWidget {
-  PostedProjectByScientists({Key key}) : super(key: key);
+class ManagingProjectByAssistant extends StatefulWidget {
+  ManagingProjectByAssistant({Key key}) : super(key: key);
 
   @override
-  _PostedProjectByScientists createState() => new _PostedProjectByScientists();
+  _ManagingProjectByAssistant createState() => new _ManagingProjectByAssistant();
 }
 
-class _PostedProjectByScientists extends State<PostedProjectByScientists> {
+class _ManagingProjectByAssistant extends State<ManagingProjectByAssistant> {
   final GlobalKey<AnimatedListState> _listKey =
       new GlobalKey<AnimatedListState>();
   final double _imageHeight = 256.0;
@@ -42,8 +42,8 @@ class _PostedProjectByScientists extends State<PostedProjectByScientists> {
 
   String _personalImage = 'assets/images/birds.jpg';
   String _personalProfile = 'assets/images/mucha_profile.jpg';
-  String _userName = '穆科学Mucha';
-  String _role = '科学家';
+  String _userName = '穆助理Mucha';
+  String _role = '助理';
 
   List<Task> _tasks = [];
 
@@ -228,12 +228,12 @@ class _PostedProjectByScientists extends State<PostedProjectByScientists> {
                 width: 15,
               ),
               new Text(
-                '已',
+                '管',
                 style: CSTextStyle.hugeTitleTextStyle
                     .copyWith(color: ThemeColorBlackberryWine.darkBlue[800]),
               ),
               new Text(
-                '发布的项目',
+                '理中的项目',
                 style: CSTextStyle.titleTextStyle
                     .copyWith(color: ThemeColorBlackberryWine.darkBlue[100]),
                 maxLines: 1,
@@ -281,7 +281,7 @@ class _PostedProjectByScientists extends State<PostedProjectByScientists> {
                 width: 5,
               ),
               new Text(
-                '有2条新的助理申请（请前往管理端查看）',
+                '有2条来自科学家的邀请（请前往管理端查看）',
                 style: new TextStyle(color: Colors.grey, fontSize: 12.0),
               ),
             ],

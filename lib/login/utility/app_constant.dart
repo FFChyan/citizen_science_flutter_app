@@ -1,6 +1,6 @@
 
 
-const PHONE_AUTH_HINT = "用户名";
+const PHONE_AUTH_HINT = "邮箱或手机号";
 const PHONE_AUTH_VALIDATION_EMPTY = "用户名不能为空";
 const PHONE_AUTH_VALIDATION_INVALID = '用户名无效';
 

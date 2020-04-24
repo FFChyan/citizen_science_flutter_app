@@ -2,6 +2,7 @@ import 'dart:ui';
 
 //import 'package:ant_icons/ant_icons.dart';
 import 'package:ant_icons/ant_icons.dart';
+import 'package:citizen_science/login/screens/onboarding/onboarding_page.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
 import 'package:citizen_science/userSettings/about_us/about_us.dart';
@@ -142,45 +143,48 @@ class _UserSettings extends State<UserSettings> {
       body: Container(
 //        color: Colors.grey,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+          padding: EdgeInsets.fromLTRB(20, 100, 20, 30),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Column(
                 children: <Widget>[
-                  CircleAvatar(
-                    minRadius: 38.0,
-                    maxRadius: 38.0,
-                    backgroundImage:
-                        new AssetImage("assets/images/mucha_profile.jpg"),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text(
-                        "穆夏Mucha",
-                        style: CSTextStyle.titleTextStyle.copyWith(
-                            fontSize: 30, fontWeight: FontWeight.w400),
+                      CircleAvatar(
+                        minRadius: 38.0,
+                        maxRadius: 38.0,
+                        backgroundImage:
+                            new AssetImage("assets/images/mucha_profile.jpg"),
                       ),
-                      Text("志愿者", style: CSTextStyle.subtitleTextStyle),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            "穆夏Mucha",
+                            style: CSTextStyle.titleTextStyle.copyWith(
+                                fontSize: 30, fontWeight: FontWeight.w400),
+                          ),
+                          Text("志愿者", style: CSTextStyle.subtitleTextStyle),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
 //          ],
-              SizedBox(
-                height: 30,
-              ),
-              Divider(
-                thickness: 1,
-                indent: 10,
-                endIndent: 10,
-              ),
-              SizedBox(
-                height: 20,
-              ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Divider(
+                    thickness: 1,
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
 //                  background: Container(
 //                    color: Colors.white,
 //                  ),
@@ -217,182 +221,212 @@ class _UserSettings extends State<UserSettings> {
 //                    ),
 //                  ),
 //                ),
-              _buildEntry(
-                funcName: "申请身份认证",
-                iconColor: ThemeColorBlackberryWine.darkBlue[50],
-                // Color(0xFFAACCCC),
-                icon: Icons.perm_contact_calendar,
-                ontap: () {
-                  print(
-                    "申请身份认证",
-                  );
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(builder: (context) {
-                      return ApplyScientistnAssist();
-                    }),
-                  );
-                },
-              ),
-              _buildEntry(
-                funcName: "个人统计",
-                iconColor: Color(0xFF66BBBB),
-                icon: Icons.equalizer,
-                ontap: () {
-                  print(
-                    "个人统计",
-                  );
-                },
-              ),
-              _buildEntry(
-                funcName: "提醒设置",
-                iconColor: Colors.teal, // Color(0xFFCCAAAA),
-                icon: Icons.sms,
-                ontap: () {
-                  print(
-                    "提醒设置",
-                  );
-                  Navigator.of(context)
-                      .push(CupertinoPageRoute(builder: (context) {
-                    return NotificationPage();
-                  }));
-                },
-              ),
-              _buildEntry(
-                funcName: "主题颜色",
-                icon: Icons.brush,
-                iconColor: Color(0xFF6699FF),
-                ontap: () {
-                  print(
-                    "主题颜色",
-                  );
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return new Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            new ListTile(
-                              subtitle: Text("深紫 / 深红 / 浅灰"),
+                  _buildEntry(
+                    funcName: "申请身份认证",
+                    iconColor: ThemeColorBlackberryWine.darkBlue[50],
+                    // Color(0xFFAACCCC),
+                    icon: Icons.perm_contact_calendar,
+                    ontap: () {
+                      print(
+                        "申请身份认证",
+                      );
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(builder: (context) {
+                          return ApplyScientistnAssist();
+                        }),
+                      );
+                    },
+                  ),
+                  _buildEntry(
+                    funcName: "个人统计",
+                    iconColor: Color(0xFF66BBBB),
+                    icon: Icons.equalizer,
+                    ontap: () {
+                      print(
+                        "个人统计",
+                      );
+                    },
+                  ),
+                  _buildEntry(
+                    funcName: "提醒设置",
+                    iconColor: Colors.teal, // Color(0xFFCCAAAA),
+                    icon: Icons.sms,
+                    ontap: () {
+                      print(
+                        "提醒设置",
+                      );
+                      Navigator.of(context)
+                          .push(CupertinoPageRoute(builder: (context) {
+                        return NotificationPage();
+                      }));
+                    },
+                  ),
+                  _buildEntry(
+                    funcName: "主题颜色",
+                    icon: Icons.brush,
+                    iconColor: Color(0xFF6699FF),
+                    ontap: () {
+                      print(
+                        "主题颜色",
+                      );
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return new Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                new ListTile(
+                                  subtitle: Text("深紫 / 深红 / 浅灰"),
 //                                leading: new Icon(Icons.fiber_manual_record),
-                              title: Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.fiber_manual_record,
-                                    color:
-                                        ThemeColorBlackberryWine.darkPurpleBlue,
+                                  title: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.fiber_manual_record,
+                                        color: ThemeColorBlackberryWine
+                                            .darkPurpleBlue,
+                                      ),
+                                      Icon(Icons.fiber_manual_record,
+                                          color:
+                                              ThemeColorBlackberryWine.redWine),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "黑莓酒",
+                                        style: CSTextStyle.midtitleTextStyle,
+                                      ),
+                                    ],
                                   ),
-                                  Icon(Icons.fiber_manual_record,
-                                      color: ThemeColorBlackberryWine.redWine),
-                                  SizedBox(
-                                    width: 10,
+                                  onTap: () {
+                                    print("切换到BlackberryWine主题色");
+                                  },
+                                ),
+                                Container(
+                                  color: ThemeColorBlackberryWine.lightGrey[50],
+                                  width: size.width - 20.0,
+                                  height: 0.7,
+                                  child: Divider(),
+                                ),
+                                new ListTile(
+                                  subtitle: Text("明黄 / 藏蓝 / 浅灰"),
+                                  title: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.fiber_manual_record,
+                                        color: ThemeColorBlackberryWine.orange,
+                                      ),
+                                      Icon(
+                                        Icons.fiber_manual_record,
+                                        color:
+                                            ThemeColorBlackberryWine.darkBlue,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "蓝橙",
+                                        style: CSTextStyle.midtitleTextStyle,
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    "黑莓酒",
-                                    style: CSTextStyle.midtitleTextStyle,
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                print("切换到BlackberryWine主题色");
-                              },
-                            ),
-                            Container(
-                              color: ThemeColorBlackberryWine.lightGrey[50],
-                              width: size.width - 20.0,
-                              height: 0.7,
-                              child: Divider(),
-                            ),
-                            new ListTile(
-                              subtitle: Text("明黄 / 藏蓝 / 浅灰"),
-                              title: Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.fiber_manual_record,
-                                    color: ThemeColorBlackberryWine.orange,
-                                  ),
-                                  Icon(
-                                    Icons.fiber_manual_record,
-                                    color: ThemeColorBlackberryWine.darkBlue,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "蓝橙",
-                                    style: CSTextStyle.midtitleTextStyle,
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                print("切换到orangeBlue主题色");
-                              },
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        );
-                      });
-                },
+                                  onTap: () {
+                                    print("切换到orangeBlue主题色");
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
+                  _buildEntry(
+                    ontap: () {
+                      Fluttertoast.showToast(
+                          msg: '推荐给朋友',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.white30,
+                          textColor: Colors.black54,
+                          fontSize: 16.0);
+                    },
+                    iconColor: Color(0xFF66CC99),
+                    icon: Icons.share,
+                    funcName: "推荐给朋友  ",
+                  ),
+                  _buildEntry(
+                    ontap: () {
+                      Fluttertoast.showToast(
+                          msg: '意见反馈',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.white30,
+                          textColor: Colors.black54,
+                          fontSize: 16.0);
+                    },
+                    iconColor: Color(0xFF0099CC),
+                    icon: Icons.library_books,
+                    funcName: "意见反馈",
+                  ),
+                  _buildEntry(
+                    funcName: "清理缓存",
+                    icon: Icons.settings,
+                    iconColor: Colors.blueGrey,
+                    ontap: () {
+                      Fluttertoast.showToast(
+                          msg: '清理缓存中',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIos: 1,
+                          backgroundColor: Colors.white30,
+                          textColor: Colors.black54,
+                          fontSize: 16.0);
+                    },
+                  ),
+                  _buildEntry(
+                    ontap: () {
+                      Navigator.of(context)
+                          .push(CupertinoPageRoute(builder: (context) {
+                        return AboutUs();
+                      }));
+                    },
+                    iconColor: Color(0xFF336699),
+                    icon: Icons.people,
+                    funcName: "关于我们",
+                  ),
+                ],
               ),
-              _buildEntry(
-                ontap: () {
-                  Fluttertoast.showToast(
-                      msg: '推荐给朋友',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIos: 1,
-                      backgroundColor: Colors.white30,
-                      textColor: Colors.black54,
-                      fontSize: 16.0);
-                },
-                iconColor: Color(0xFF66CC99),
-                icon: Icons.share,
-                funcName: "推荐给朋友  ",
-              ),
-              _buildEntry(
-                ontap: () {
-                  Fluttertoast.showToast(
-                      msg: '意见反馈',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIos: 1,
-                      backgroundColor: Colors.white30,
-                      textColor: Colors.black54,
-                      fontSize: 16.0);
-                },
-                iconColor: Color(0xFF0099CC),
-                icon: Icons.library_books,
-                funcName: "意见反馈",
-              ),
-              _buildEntry(
-                funcName: "清理缓存",
-                icon: Icons.settings,
-                iconColor: Colors.blueGrey,
-                ontap: () {
-                  Fluttertoast.showToast(
-                      msg: '清理缓存中',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIos: 1,
-                      backgroundColor: Colors.white30,
-                      textColor: Colors.black54,
-                      fontSize: 16.0);
-                },
-              ),
-              _buildEntry(
-                ontap: () {
-                  Navigator.of(context)
-                      .push(CupertinoPageRoute(builder: (context) {
-                    return AboutUs();
-                  }));
-                },
-                iconColor: Color(0xFF336699),
-                icon: Icons.people,
-                funcName: "关于我们",
-              ),
+              _buildExitButton(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _buildExitButton extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushReplacement(CupertinoPageRoute(builder: (context) {
+          return OnBoardingPage();
+        }));
+      },
+      child: Container(
+        decoration: new BoxDecoration(
+//          shape: BoxShape.circle,
+          color: ThemeColorBlackberryWine.lightGrey[700],
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        child: Text(
+          "退出登录",
+          style: CSTextStyle.subtitleTextStyle.copyWith(color: Colors.white),
         ),
       ),
     );

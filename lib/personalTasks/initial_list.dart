@@ -1,4 +1,4 @@
-import 'package:citizen_science/personalTasks/task.dart';
+import 'package:citizen_science/utils/task.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,4 +1,4 @@
-import 'package:citizen_science/personalTasks/diagonal_clipper.dart';
+import 'package:citizen_science/utils/diagonal_clipper.dart';
 import 'package:citizen_science/projectDetail/personalprofile_and_username.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';
@@ -334,6 +334,7 @@ class _ProjectIntroduction extends State<ProjectIntroduction> {
               SizedBox(
                 height: 50,
               ),
+
             ],
           ),
         ),

@@ -1,9 +1,9 @@
 import 'package:citizen_science/utils/animated_fab.dart';
 import 'package:citizen_science/utils/diagonal_clipper.dart';
 import 'package:citizen_science/personalTasks/initial_list.dart';
-import 'package:citizen_science/personalTasks/list_model.dart';
-import 'package:citizen_science/personalTasks/pageroute1.dart';
-import 'package:citizen_science/personalTasks/task.dart';
+import 'package:citizen_science/utils/list_model.dart';
+import 'package:citizen_science/utils/pageroute1.dart';
+import 'package:citizen_science/utils/task.dart';
 import 'package:citizen_science/personalTasks/task_row.dart';
 import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:citizen_science/theme/textstyle.dart';

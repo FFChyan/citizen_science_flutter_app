@@ -1,14 +1,15 @@
-import 'package:citizen_science/personalTasks/task.dart';
+import 'package:citizen_science/utils/task.dart';
 import 'package:citizen_science/projectDetail/project_navigator.dart';
+import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TaskRow extends StatelessWidget {
+class PostedTaskRow extends StatelessWidget {
   final Task task;
   final double dotSize = 12.0;
   final Animation<double> animation;
 
-  const TaskRow({Key key, this.task, this.animation}) : super(key: key);
+  const PostedTaskRow({Key key, this.task, this.animation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,24 @@ class TaskRow extends StatelessWidget {
                           task.category,
                           style:
                               new TextStyle(fontSize: 12.0, color: Colors.grey),
-                        )
+                        ),
+                        Row(
+                          children: <Widget>[
+                            new Icon(
+                              Icons.priority_high,
+                              size: 15,
+                              color: ThemeColorBlackberryWine.orange[900],
+                            ),
+                            new SizedBox(
+                              width: 5,
+                            ),
+                            new Text(
+                              '有' + task.newDataNum.toString() + '条待评价的数据（请前往管理端查看）',
+                              style: new TextStyle(
+                                  color: Colors.grey, fontSize: 12.0),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
