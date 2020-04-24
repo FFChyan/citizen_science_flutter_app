@@ -1,6 +1,5 @@
 import 'package:citizen_science/personalTasks/task.dart';
 import 'package:citizen_science/projectDetail/project_navigator.dart';
-import 'package:citizen_science/theme/blackberrywine_themecolor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +51,7 @@ class TaskRow extends StatelessWidget {
                           task.category,
                           style:
                               new TextStyle(fontSize: 12.0, color: Colors.grey),
-                        ),
+                        )
                       ],
                     ),
                   ),
